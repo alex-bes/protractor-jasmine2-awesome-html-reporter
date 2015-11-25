@@ -49,60 +49,80 @@ var Timer = function () {
     }
 };
 
-var SuiteNode = function(data){
+var SuiteNode = function () {
     "use strict";
     var self = this;
     var _self = {};
 
     _self.parent = null;
+    self.specs = [];
+    self.suites = [];
 
-    self.setStartedInfo = function(){
 
+    self.setData = function (data) {
+        for (var key in data) {
+            if (data.hasOwnProperty(key) && ['parent', 'specs', 'suites'].indexOf(key) < 0) {
+                self[key] = data[key];
+            }
+        }
+        return self;
     };
 
-    self.setParent = function(parentNode){
+    self.addSuite = function (data) {
+        var suiteNode = new SuiteNode();
+        suiteNode.setData(data);
+        suiteNode.setParent(self);
+        self.suites.push(suiteNode);
+        return suiteNode;
+    };
+
+    self.addSpecResult = function (data) {
+        self.specs.push(data);
+    };
+
+    self.setParent = function (parentNode) {
         _self.parent = parentNode
     };
 
-    self.getParent = function(){
+    self.getParent = function () {
         return _self.parent
-    }
-
+    };
 };
 
 var JasmineReportCollector = function () {
     "use strict";
     var self = this;
     var _self = {};
-    _self.timers = {};
-
-    _self.specs = [];
-    _self.suites = [];
-    _self.suitesStack = [];
-    _self.recursionLevel = 0;
 
     _self.root = null;
     _self.current = null;
 
     self.specStarted = function (result) {
-
+        //noop
     };
 
-    self.specDone = function (result) {
-
+    self.specDone = function (data) {
+        _self.current.addSpecResult(data);
     };
 
-    self.suiteStarted = function (result) {
+    self.suiteStarted = function (data) {
+        _self.current = _self.current.addSuite(data);
     };
 
-    self.suiteDone = function (result) {
-        result.suites = _self.suites;
+    self.suiteDone = function (data) {
+        _self.current.setData(data);
+        _self.current = _self.current.getParent();
     };
 
-    self.jasmineStarted = function (suiteInfo) {
+    self.jasmineStarted = function (data) {
+        var node = new SuiteNode();
+        node.setData(data);
+        _self.current = _self.root = node;
     };
 
-    self.jasmineDone = function () {
+    self.jasmineDone = function (data) {
+        _self.root.setData(data);
+        console.log(JSON.stringify(_self.root, null, 4))
     }
 
 };
@@ -135,7 +155,7 @@ var AwesomeHtmlReporter = function (opts) {
     };
 
     self.jasmineDone = function (result) {
-        reportCollector.jasmineStarted(result)
+        reportCollector.jasmineDone(result)
     }
 };
 
