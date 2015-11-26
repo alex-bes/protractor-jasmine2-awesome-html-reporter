@@ -1,0 +1,14 @@
+{% for suite in rootSuite.suites %}
+<div class="suite">
+    <h2>{{suite.description}}</h2>
+
+    {% for spec in suite.specs %}
+    <div class="spec">
+        <h3>{{spec.description}}</h3>
+    </div>
+    {% endfor %}
+
+    {% set rootSuite = suite %}
+    {% include "./suite.partial.html" with rootSuite %}
+</div>
+{% endfor %}

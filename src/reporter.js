@@ -1,33 +1,48 @@
 var JasmineReportCollector  = require('./reportCollector');
+var HtmlReportBuilder  = require('./htmlReportBuilder');
+var FileWriter  = require('./fileWriter');
 
 var AwesomeHtmlReporter = function (opts) {
     "use strict";
 
     var self = this;
-    var reportCollector = new JasmineReportCollector();
+    var _self = {};
+
+    _self.reportCollector = new JasmineReportCollector();
+    _self.htmlReportBuilder = new HtmlReportBuilder();
+    _self.fileWriter = new FileWriter();
 
     self.specStarted = function (result) {
-        reportCollector.specStarted(result)
+        _self.reportCollector.specStarted(result)
     };
 
     self.specDone = function (result) {
-        reportCollector.specDone(result)
+        _self.reportCollector.specDone(result)
     };
 
     self.suiteStarted = function (result) {
-        reportCollector.suiteStarted(result)
+        _self.reportCollector.suiteStarted(result)
     };
 
     self.suiteDone = function (result) {
-        reportCollector.suiteDone(result)
+        _self.reportCollector.suiteDone(result)
     };
 
     self.jasmineStarted = function (result) {
-        reportCollector.jasmineStarted(result)
+        _self.reportCollector.jasmineStarted(result)
     };
 
     self.jasmineDone = function (result) {
-        reportCollector.jasmineDone(result)
+        _self.reportCollector.jasmineDone(result);
+
+        _self.htmlReportBuilder.setData({
+            pageTitle: 'Awesome Jasmine2 Report',
+            rootSuite: _self.reportCollector.getTree()
+        });
+
+        var report = _self.htmlReportBuilder.build();
+
+        _self.fileWriter.writeReport(report)
     }
 };
 

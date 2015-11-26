@@ -1,14 +1,20 @@
+var swig = require('swig');
+
 var HtmlReportBuilder = function (opts) {
     "use strict";
     var self = this;
+    var _self = {};
+    _self.data = null;
 
-    var rawData;
     self.setData = function (data) {
-        rawData = data;
+        _self.data = data;
         return self;
     };
 
     self.build = function () {
-
+        var template = swig.compileFile(__dirname + '/templates/index.html');
+        return template(_self.data);
     }
 };
+
+module.exports = HtmlReportBuilder;

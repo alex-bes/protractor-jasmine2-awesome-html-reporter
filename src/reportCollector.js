@@ -42,8 +42,11 @@ var JasmineReportCollector = function () {
         var data = {};
         data.time = _self.timer.lapAndForget('jasmine');
         _self.root.setData(data);
-        console.log(JSON.stringify(_self.root, null, 4))
-    }
+    };
+
+    self.getTree = function(){
+        return _self.root;
+    };
 
 };
 
