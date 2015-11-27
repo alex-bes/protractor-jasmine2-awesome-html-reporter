@@ -40,6 +40,8 @@ var AwesomeHtmlReporter = function (opts) {
             rootSuite: _self.reportCollector.getTree()
         });
 
+        console.log(JSON.stringify(_self.reportCollector.getTree(), null, 4));
+
         var report = _self.htmlReportBuilder.build();
 
         _self.fileWriter.writeReport(report)

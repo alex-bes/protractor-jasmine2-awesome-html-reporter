@@ -1,0 +1,21 @@
+
+.suite {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.suite > .suite-title {
+    background-color: #006dcc;
+    width: 100%;
+    display: inline-block;
+}
+
+.suite > .suite-content {
+    display: none;
+}
+
+.spec {
+    margin-left: 20px;
+}
+
+

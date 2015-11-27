@@ -1,14 +1,18 @@
 {% for suite in rootSuite.suites %}
 <div class="suite">
-    <h2>{{suite.description}}</h2>
+    <span class="suite-title" data-suite-id="{{suite.id}}">{{suite.description}}  - {{ suite.time / 1000 }} sec.</span>
 
-    {% for spec in suite.specs %}
-    <div class="spec">
-        <h3>{{spec.description}}</h3>
+    <div class="suite-content" data-suite-id="{{suite.id}}">
+
+        {% for spec in suite.specs %}
+        <div class="spec" data-description="{{ spec.description }}" data-fullName="{{ spec.fullName }}">
+            <span class="spec-title">{{ spec.description }} - {{ spec.time / 1000 }} sec.</span>
+            <div class="spec-content"></div>
+        </div>
+        {% endfor %}
+
+        {% set rootSuite = suite %}
+        {% include "./suite.partial.html" with rootSuite %}
     </div>
-    {% endfor %}
-
-    {% set rootSuite = suite %}
-    {% include "./suite.partial.html" with rootSuite %}
 </div>
 {% endfor %}

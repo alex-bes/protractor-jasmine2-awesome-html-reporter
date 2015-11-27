@@ -4,17 +4,27 @@
     <meta charset="UTF-8">
     <title>{{ pageTitle }}</title>
 
-    {% include "./script.html" %}
-    {% include "./style.html" %}
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+    <script>{% include "./script.js" %}</script>
+    <style>{% include "./style.css" %}</style>
+    <!--<script src="../src/templates/script.js"></script>-->
+    <!--<link type="text/css" rel="stylesheet" href="../src/templates/style.css"/>-->
 </head>
 <body>
-<header>
-    <h1>info going here</h1>
-</header>
+<div class="wrapper">
+    <header>
+        <h1>{{ pageTitle }}</h1>
 
-<div>
-    {% include "./suite.partial.html" with rootSuite %}
+        <div>
+            <input id="filterText" type="text" placeholder="Type to filter test results"/><br/>
+            <input id="filterFailed" type="checkbox" name="" value="Bike"> Show only Failed test<br>
+        </div>
+    </header>
+
+    <section>
+        {% include "./suite.partial.html" with rootSuite %}
+    </section>
 </div>
-
 </body>
 </html>
