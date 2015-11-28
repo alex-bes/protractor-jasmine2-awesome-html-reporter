@@ -5,8 +5,13 @@
     <div class="suite-content" data-suite-id="{{suite.id}}">
 
         {% for spec in suite.specs %}
-        <div class="spec" data-description="{{ spec.description }}" data-fullName="{{ spec.fullName }}">
+        <div class="spec {{ spec.status }}"
+             data-description="{{ spec.description }}"
+             data-fullName="{{ spec.fullName }}"
+             data-status="{{ spec.status }}"
+                >
             <span class="spec-title">{{ spec.description }} - {{ spec.time / 1000 }} sec.</span>
+
             <div class="spec-content"></div>
         </div>
         {% endfor %}

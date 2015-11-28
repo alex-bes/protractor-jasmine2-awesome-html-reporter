@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <title>{{ pageTitle }}</title>
 
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>-->
 
+    <script>{% include "./jquery-2.1.4.min.js" %}</script>
     <script>{% include "./script.js" %}</script>
     <style>{% include "./style.css" %}</style>
+    <!--<script src="../src/templates/jquery-2.1.4.min.js"></script>-->
     <!--<script src="../src/templates/script.js"></script>-->
     <!--<link type="text/css" rel="stylesheet" href="../src/templates/style.css"/>-->
 </head>
@@ -17,8 +19,11 @@
         <h1>{{ pageTitle }}</h1>
 
         <div>
-            <input id="filterText" type="text" placeholder="Type to filter test results"/><br/>
-            <input id="filterFailed" type="checkbox" name="" value="Bike"> Show only Failed test<br>
+            <input id="filterText" type="text" autocomplete="off" placeholder="Type to filter test results"/><br/>
+            <input id="filterFailed" type="checkbox" autocomplete="off"> Show only Failed test<br>
+        </div>
+        <div>
+            <input type="button" id="showAllSuites"  value="Open all suites"/>
         </div>
     </header>
 
