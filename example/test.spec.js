@@ -1,8 +1,8 @@
 
 describe('THIS IS THE FIRST ROOT "DESCRIBE"', function () {
-    //beforeEach(function(){
-    //    browser.get('http://www.angularjs.org');
-    //})
+    beforeEach(function(){
+        browser.get('http://www.angularjs.org');
+    })
     it('THIS IS THE FIRST "IT" FIRST ROOT "DESCRIBE"', function () {
         expect(true).toBe(true);
     });
@@ -14,9 +14,9 @@ describe('THIS IS THE FIRST ROOT "DESCRIBE"', function () {
 
 
 describe('THIS IS THE SECOND ROOT "DESCRIBE"', function () {
-    //beforeEach(function(){
-    //    browser.get('http://www.angularjs.org');
-    //});
+    beforeEach(function(){
+        browser.get('http://www.angularjs.org');
+    });
 
     it('THIS IS THE FIRST "IT" IN SECOND ROOT "DESCRIBE"', function () {
         expect(true).toBe(true);

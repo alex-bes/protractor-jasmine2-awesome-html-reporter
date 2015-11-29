@@ -44,7 +44,7 @@ var JasmineReportCollector = function () {
         _self.root.setData(data);
     };
 
-    self.getTree = function(){
+    self.getTree = function () {
         return _self.root;
     };
 

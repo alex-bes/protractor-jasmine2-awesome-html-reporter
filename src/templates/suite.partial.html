@@ -12,7 +12,11 @@
                 >
             <span class="spec-title">{{ spec.description }} - {{ spec.time / 1000 }} sec.</span>
 
-            <div class="spec-content"></div>
+            <div class="spec-content">
+                <a href="#">
+                    <img class="screenshot-preview" src="{{ spec.screenshotUrl }}" alt=""/>
+                </a>
+            </div>
         </div>
         {% endfor %}
 

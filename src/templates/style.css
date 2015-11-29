@@ -1,11 +1,16 @@
-.wrapper{
+html, body {
+    background-color: #cdcdcd;
+}
+
+.wrapper {
     width: 95%;
     margin: auto;
 }
 
-section{
+section {
     margin-left: -20px;
 }
+
 .suite {
     margin-left: 20px;
     margin-bottom: 20px;
@@ -21,16 +26,22 @@ section{
     display: none;
 }
 
+
+
 .spec {
     margin-left: 20px;
 }
-
-.spec.passed{
+.spec.passed {
     background-color: #70ff4f;
 }
-
-.spec.failed{
+.spec.failed {
     background-color: #ff6f56;
+}
+
+.screenshot-preview{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
 }
 
 
